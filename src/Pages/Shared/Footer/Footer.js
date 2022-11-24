@@ -8,7 +8,9 @@ const Footer = () => {
         backgroundSize:'cover',
         width:'100vw',
         hight:'80vh',
-        backgroundColor:'navy'
+        backgroundColor:'navy',
+        borderTop: '4px solid gold' 
+    
     }
     return (
  <section className='mt-10 mx-auto  ' style={footerBg}>

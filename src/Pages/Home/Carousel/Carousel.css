@@ -1,0 +1,23 @@
+.carousel-item {
+    
+    Background: no-repeat scroll center scroll ;
+    -webkit-background-size :cover ;
+    Background-size:cover ;
+
+}
+
+  .carousel-item::before{
+    Content : " " ;
+    Display : block ;
+    Position : absolute ;
+    Top: 0;
+    Left: 0; 
+    Right : 0 ;
+    Bottom : 0 ;
+    Background: #000 ;
+    Opacity: 0.4 ;
+ } 
+
+.banner{
+    height:100%;
+}

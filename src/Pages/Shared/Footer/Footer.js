@@ -13,7 +13,7 @@ const Footer = () => {
     
     }
     return (
- <section className='mt-10 mx-auto  ' style={footerBg}>
+ <section className='mt-20 mx-auto  ' style={footerBg}>
  <footer className="footer  p-10  text-white">
   <div className='flex flex-col items-center w-full'>
     <span className="footer-title">Services</span> 

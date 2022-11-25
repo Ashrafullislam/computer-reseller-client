@@ -6,6 +6,8 @@ import Blog from '../../Pages/Blog/Blog';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Register/Login/Login';
 import SignUp from '../../Pages/Register/SignUp/SignUp';
+import PrivetRoute from '../PrivetRoute/PrivetRoute';
+
 
   const router = createBrowserRouter ([
     {
@@ -18,7 +20,7 @@ import SignUp from '../../Pages/Register/SignUp/SignUp';
                 path: '/home', element: <Home > </Home>
             },
             {
-                path: '/blog', element: <Blog > </Blog>
+                path: '/blog', element:  <Blog > </Blog> 
             },
             {
                 path: '/signup', element: <SignUp > </SignUp>
@@ -31,7 +33,7 @@ import SignUp from '../../Pages/Register/SignUp/SignUp';
                 loader:({params}) =>  {
                     return fetch(`http://localhost:5000/categoryProducts/${params.id}`)
                 } ,
-                element: <CategoryProducts > </CategoryProducts>
+                element: <PrivetRoute > <CategoryProducts > </CategoryProducts>  </PrivetRoute>  
             },
           
             {

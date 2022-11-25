@@ -14,9 +14,7 @@ const HomeProducts = () => {
         .then(category => setCategories(category))
     },[])
 
-    if(loading){
-        return <Loading > </Loading>
-    }
+  
     return (
         <div>
             <h2 className='my-10 shadow-lg w-1/2 rounded-tl-2xl rounded-br-2xl mx-auto bg-primary py-3  text-center text-3xl text-white font-bold'> Our Products {categories.length}  </h2>

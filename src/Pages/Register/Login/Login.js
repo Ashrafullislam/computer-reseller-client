@@ -6,7 +6,7 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 
 const LogInForm = () => {
-    const {LogInUser,user,GoogleLogin} = useContext(AuthContext ); 
+    const { LoginUser,user, GoogleLogin} = useContext(AuthContext ); 
     const provider = new GoogleAuthProvider();
     const [err, setErr] = useState('')
     const [success,setSuccess] = useState('')
@@ -19,7 +19,7 @@ const LogInForm = () => {
   // source from react-form-hook // usging react form hook 
   const handleLogin = (data, e) => {
  
-    LogInUser(data.email, data.password)
+    LoginUser(data.email, data.password)
     .then(result => {
       const  userResult = result.user ;
 

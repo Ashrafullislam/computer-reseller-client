@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaBeer, FaMapMarkedAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import {  FaMapMarkerAlt } from 'react-icons/fa';
 
-const CategoryProductCard = ({categoryProduct}) => {
+const CategoryProductCard = ({categoryProduct,setProducts}) => {
     const {brand,conditionType, sellerLocation ,hardDrive,photoURL,originalPrice,reselPrice,title} = categoryProduct ;
+
+    const handleBook  = () => {
+        setProducts(categoryProduct)
+    }
     console.log(categoryProduct)
     return (
         <div>
@@ -26,7 +30,10 @@ const CategoryProductCard = ({categoryProduct}) => {
             <span>  <FaMapMarkerAlt  /> </span>
             </div> 
           <div className="card-actions flex justify-end absolute bottom-0 right-0 p-5 ">
-            <Link > <button className='btn btn-primary hover:btn-secondary' > Book now  </button></Link>           
+
+          <label  htmlFor="booking-modal" className={`btn  btn-primary   bg-gradient-to-r from-primary  to-secondary text-white `}                        
+             onClick={handleBook}> Book Now </label>
+           
           </div>
         </div>
       </div>

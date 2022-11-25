@@ -17,22 +17,22 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 
   // %%%%%%   handle sign up form  %%%%%%%%% 
-    const handleSignUp = (data,e) => { 
-    createUser(data.email, data.password)
+    const handleSignUp = (data,e) => {
     const userType = e.target.userType.value;
-    console.log(userType)
+    createUser(data.email, data.password)
+    // console.log(userType)
     .then(result => {
        const  userResult = result.user ;
        toast.success('User created successfull ')
-        const userInfo = { displayName:data.name,}
-        UpdateUser(userInfo)
+       const userInfo = {displayName:data.name}
+       UpdateUser(userInfo)
         .then(()=> { 
-      // save user function call for created user data save in  database      
-         
+        // save user function call for created user data save in  database    
+         saveUser(data.name,data.email,userType)
         })
         .catch (err => { console.log(err.message)  } )
         e.target.reset()
-        // user verify with  email send from firebase 
+        // user verify with  email send from firebase
     })
     .catch(error => { 
         const err = error.message ;
@@ -41,7 +41,7 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
     })
 
     const saveUser = (name,email,userType) =>  {
-        
+        console.log(name,email,userType)
     }
   }
 
@@ -52,6 +52,7 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
             const userResult = result.user ;
             const email = userResult.email;
             const name = userResult.displayName;
+            
             toast.success(" Google Log in successfull ")
         })
         .catch(err => {
@@ -87,7 +88,7 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
         <br />
 
         <label > Select account type buyer or seller </label>
-        <select  className="mt-3 select select-primary w-full max-w-xs" name='userType' >
+        <select   className="mt-3 select select-primary w-full max-w-xs" name='userType' >
         <option value="buyer">Buyer</option>
         <option value="seller">Seller</option>
         

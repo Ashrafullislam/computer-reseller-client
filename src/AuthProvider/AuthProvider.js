@@ -1,45 +1,72 @@
-import React, { createContext, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import React, { createContext, useEffect, useState } from 'react';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../Firebase/firebase.config';
 
 export const AuthContext = createContext()
 const auth = getAuth(app)
 const AuthProvider = ({children}) => {
+    const [loading,setLoading] = useState(true)
     const [user,setUser] = useState({})
 
     // create user by  email  and password 
     const createUser = (email,password) => {
+    setLoading(true)
      return createUserWithEmailAndPassword(auth,email,password)
     }
     
     // update user for find the user name 
-    const UpdateUser = () => {
-        return updateProfile(auth.currentUser)
+    const UpdateUser = (userInfo) => {
+        setLoading(true)
+        return updateProfile(auth.currentUser,userInfo)
     }
     // login user with email and password 
     const LoginUser = (email,password) => {
+        setLoading(true)
        return signInWithEmailAndPassword(auth,email,password)
     }
 
     // signIn with google 
     const GoogleLogin = (provider) => {
+        setLoading(true)
        return signInWithPopup(auth,provider)
     } 
 
     // signOut user 
     const LogOutUser  = () => {
+        setLoading(true)
         return signOut(auth)
     }
 
 
+// onAuthStateChange 
+useEffect(()=> {
+    const unsubscribe = onAuthStateChanged(auth, currentUser=>{
+        setLoading(false)
+        setUser(currentUser)
 
-    const info = 
-        {
-            displayName:'ashrafull'
-        }
+        // the condition work  properly to verify user and access  to login 
+
+        // if(currentUser.emailVerified){
+        //     setUser(currentUser)
+
+        // }
+        //  if (!currentUser.emailVerified) { 
+          
+        //     setUser({})
+          
+        // }
+        
+    
+    })
+    return ()=> unsubscribe()
+
+},[])
+
+
     
         const authInfo = {
-            info,
+            
+            loading,
             user,
             createUser,
             LoginUser,

@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomeProductsCard = ({category}) => {
-    const {title,brand,originalPrice,reselPrice,photoURL,category_id} = category ;
+    const {title,brand,originalPrice,reselPrice,photoURL,category_id,_id} = category ;
   return (
     <div>
       <div className=" mx-auto my-10 card w-4/5 text-black bg-base-100 shadow-xl">
@@ -13,12 +14,11 @@ const HomeProductsCard = ({category}) => {
             {title}
            
           </h2>
-          <p>{brand}</p>
-          <p> Original Price: {originalPrice} BDT </p>
-          <p> Resell  Price: {reselPrice} BDT </p> 
+          <p className=' text-primary font-semibold text-lg'>{brand}</p>
+          <p> Original Price: <b > {originalPrice} </b> BDT </p>
+          <p> Resell  Price: <b> {reselPrice} </b>  BDT </p> 
           <div className="card-actions justify-end">
-            <div className="btn btn-primary"> Same Category </div>
-            <div className="btn btn-secondary">Details</div>
+            <Link to={`/categoryProducts/${category_id}`} className="btn btn-primary"> Same Category </Link>
           </div>
         </div>
       </div>

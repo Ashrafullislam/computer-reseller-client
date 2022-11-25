@@ -28,11 +28,11 @@ const LogInForm = () => {
       //    toast.error(" Please verify your email  ")
       //    return ;
       // }
-
+      
       setSuccess("User login successfull ")
       setErr('')
-      
       e.target.reset()
+      navigate( from ,{replace:true});
        
     })
     .catch(err  => {

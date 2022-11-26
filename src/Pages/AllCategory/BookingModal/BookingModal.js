@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const BookingModal = ({products}) => {
@@ -19,12 +20,7 @@ const BookingModal = ({products}) => {
     const buyerName = form.buyername.value;
     const meetLocation =form.location.value ;
     const price = form.price.value;
-
-    // if(phone.length < 11 ){
-    //   setError('Phone number must be given atleast 11 characters')
-    //   return ;
-    // }
-           
+ 
     // make an object to send data in data base 
     const booking = {
       productName: productName ,
@@ -36,7 +32,22 @@ const BookingModal = ({products}) => {
       phone,
    
   }
-  console.log(booking,'booking')
+   // send data client to server 
+   fetch(`http://localhost:5000/bookings`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(booking)
+   })
+   .then(res => res.json())
+   .then(bookingResult => {
+    if(bookingResult.acknowledged){
+      toast.success(`Successfully booking on ${productName}`)
+    }
+    console.log(bookingResult)
+   })
+  // console.log(booking,'booking')
 
   }
 

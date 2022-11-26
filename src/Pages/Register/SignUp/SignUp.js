@@ -41,7 +41,23 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
     })
 
     const saveUser = (name,email,userType) =>  {
-        console.log(name,email,userType)
+        console.log(name,email,userType,'saveuser ')
+        const user = {name,email,userType};
+        fetch(`http://localhost:5000/users`,{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body:JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(userData => {
+        if(userData.acknowledged){
+            console.log(userData)
+        }
+
+        })
+
     }
   }
 

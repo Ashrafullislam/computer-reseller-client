@@ -7,7 +7,6 @@ import CategoryProductCard from './CategoryProductCard';
 const CategoryProducts = () => {
     const categoryProducts = useLoaderData();
     const [products,setProducts] = useState(null) ;
-    console.log(products,'products category ')
     return (
         <div>
             <div className=' mt-6 bg-primary py-3  shadow-lg w-1/2 rounded-tl-2xl rounded-br-2xl mx-auto '>

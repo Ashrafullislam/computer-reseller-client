@@ -3,28 +3,43 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const BookingModal = ({products}) => {
   const {user} = useContext(AuthContext)
-  const {brand,resellPrice,}  = products ;
+  const {brand,reselPrice,}  = products ;
   const [error , setError] = useState('')
   const bookDate = new Date();
   let bookingDate = bookDate.toLocaleDateString()
   console.log(bookDate)
 
-  const productBookinHandlar = (event) => {
+  const productBookingHandlar = (event) => {
     event.preventDefault()
     const form = event.target ;
-    const date = form.date.value ;
-    const name = form.name.value ;
+    const date = form.bookingDate.value ;
+    const productName = form.productName.value ;
     const email = form.email.value ;
     const phone = form.phone.value ;
-    console.log(form)
-    if(phone.length < 11 ){
-      setError('Phone number must be given atleast 11 characters')
-      return ;
-    }
+    const buyerName = form.buyername.value;
+    const meetLocation =form.location.value ;
+    const price = form.price.value;
 
-
- 
+    // if(phone.length < 11 ){
+    //   setError('Phone number must be given atleast 11 characters')
+    //   return ;
+    // }
+           
+    // make an object to send data in data base 
+    const booking = {
+      productName: productName ,
+      buyerName: buyerName,
+      bookingDate:date,
+      meetLocation,
+      email,
+      productPrice:price,
+      phone,
+   
   }
+  console.log(booking,'booking')
+
+  }
+
   return (
     <div className='text-primary'>
       <input type="checkbox" id="booking-modal" className="modal-toggle" />
@@ -40,10 +55,10 @@ const BookingModal = ({products}) => {
           Product  name:  {brand}
           </h3>
           <p className="py-4">
-            <form onSubmit={productBookinHandlar} className="flex  flex-col items-center leading-4	 ">
+            <form onSubmit={productBookingHandlar} className="flex  flex-col items-center leading-4	 ">
               <input
                 type="text"
-                name='appoint_name'
+                name='productName'
                 placeholder="Product name"
                 defaultValue={brand}
 
@@ -53,7 +68,7 @@ const BookingModal = ({products}) => {
 
               <input
                 type="text"
-                name='date'
+                name='bookingDate'
                 placeholder=" Booking Date"
                 defaultValue={bookingDate}
                 readOnly
@@ -63,12 +78,23 @@ const BookingModal = ({products}) => {
 
               <input
                 type="text"
-                name='sellername'
+                name='price'
+                placeholder=" Resell price"
+                defaultValue={reselPrice}
+                required
+                readOnly
+                className="input  bg-slate-200 input-bordered w-full max-w-xs"
+              />
+              <br />
+
+              <input
+                type="text"
+                name='buyername'
                 defaultValue={user?.displayName}
                 readOnly
                 placeholder="Enter your full name "
                 required
-                className="input input-bordered input-accent w-full max-w-xs"
+                className="input input-bordered  bg-slate-200 w-full max-w-xs"
               />
               <br />
               <input
@@ -77,7 +103,7 @@ const BookingModal = ({products}) => {
                 defaultValue={user?.email}
                 placeholder="Enter your email "
                 readOnly
-                className="input input-bordered input-accent w-full max-w-xs"
+                className="input input-bordered   bg-slate-200 w-full max-w-xs"
                 required
               />
               <br />
@@ -86,21 +112,21 @@ const BookingModal = ({products}) => {
                 name='phone'
                 placeholder="Enter your phone number "
                 required
-                className="input input-bordered input-accent w-full max-w-xs"
+                className="input input-bordered  bg-slate-200 w-full max-w-xs"
               />
               <br />
               <input
                 type="text"
                 name='location'
                 placeholder="Enter your location "
-                required
-                className="input input-bordered input-accent w-full max-w-xs"
+                required 
+                className="input input-bordered  bg-slate-200 w-full max-w-xs"
               />
               {error && <p className='text-red-500'> {error} </p>}
               <br />
               <input
                 type="submit"
-                value='Submit '
+                value='Booking '
                 className="btn bg-accent w-full max-w-xs"
               />
             </form>

@@ -45,8 +45,8 @@ const AllUsers = () => {
                 <td>{user.name}  </td>
                 <td> {user.email} </td>
                 <td> {user.userType} </td>
-                <td> <button className='btn btn-primary text-white ' > Make Admin </button> </td>
-                <td> <button className='btn bg-blue-500 text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
+                <td> <button className='btn btn-primary btn-sm text-white ' > Make Admin </button> </td>
+                <td> <button className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
             </tr> )
             :
             ''

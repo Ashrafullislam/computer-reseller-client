@@ -33,13 +33,13 @@ const MyOrders = () => {
         <thead className=''>
         <tr className='head-row'>
             <th></th>
-            <th> User name </th>
             <th> Product Image </th>
+            <th> User email </th>
             <th> Booking Date </th>
             <th> Product Name </th>
             <th> Price </th>
-            <th> Delete </th>
             <th> Payment </th>
+            <th> Delete </th>
         </tr>
         </thead>
         <tbody className='text-primary'>
@@ -52,8 +52,8 @@ const MyOrders = () => {
                 <td> {order.bookingDate} </td>
                 <td> {order.productName} </td>
                 <td> {order.productPrice} </td>
-                <td> <button className='btn btn-primary' > Paynow </button> </td>
-                <td> <button className='btn bg-blue-500 text-white' > Delete <FaTrashAlt className='ml-2' />  </button> </td>
+                <td> <button className='btn text-white btn-primary btn-sm' > Paynow </button> </td>
+                <td> <button className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2' />  </button> </td>
             </tr> )
             :
             ''

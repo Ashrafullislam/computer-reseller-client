@@ -1,4 +1,3 @@
-import colorNames from 'daisyui/src/colors/colorNames';
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BookingModal from '../BookingModal/BookingModal';
@@ -26,7 +25,7 @@ const CategoryProducts = () => {
                 {products && 
                 
                 <BookingModal key={products._id} 
-                products = {products}
+                products = {products} setProducts = {setProducts}
                 > 
                 </BookingModal>
                 }

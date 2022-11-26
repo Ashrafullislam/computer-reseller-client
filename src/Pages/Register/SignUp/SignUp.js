@@ -54,6 +54,7 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
         .then(userData => {
         if(userData.acknowledged){
             console.log(userData)
+            navigate('/')
         }
 
         })

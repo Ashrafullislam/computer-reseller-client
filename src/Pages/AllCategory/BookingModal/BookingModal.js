@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
-const BookingModal = ({products}) => {
+const BookingModal = ({products,setProducts}) => {
   const {user} = useContext(AuthContext)
-  const {brand,reselPrice,}  = products ;
+  const {brand,reselPrice,photoURL}  = products ;
   const [error , setError] = useState('')
   const bookDate = new Date();
   let bookingDate = bookDate.toLocaleDateString()
-  console.log(bookDate)
+  console.log(products.photoURL ,'products ')
 
   const productBookingHandlar = (event) => {
     event.preventDefault()
@@ -30,7 +30,7 @@ const BookingModal = ({products}) => {
       email,
       productPrice:price,
       phone,
-   
+      photoURL
   }
    // send data client to server 
    fetch(`http://localhost:5000/bookings`, {
@@ -44,6 +44,7 @@ const BookingModal = ({products}) => {
    .then(bookingResult => {
     if(bookingResult.acknowledged){
       toast.success(`Successfully booking on ${productName}`)
+      setProducts(null)
     }
     console.log(bookingResult)
    })

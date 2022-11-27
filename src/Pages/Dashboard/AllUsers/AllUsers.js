@@ -40,6 +40,26 @@ const handleMakeAdmin = (_id) => {
 }
 
 
+// delete order from database 
+const deleteUser = email => {
+
+    fetch(`http://localhost:5000/users/${email}`,{
+        method:'PUT',
+        headers:{
+            authorization: `bearer ${localStorage.getItem('accessToken')}`,
+
+        }
+
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.deletedCount === 1){
+            toast.success('Successfully user deleted')
+             refetch()
+        }
+    })
+}
+
 
     if(isLoading){
         return <Loading > </Loading>
@@ -75,7 +95,7 @@ const handleMakeAdmin = (_id) => {
                 <td> {user.email} </td>
                 <td> {user.userType} </td>
                 <td> { user.role !== 'admin' && <button onClick={()=> handleMakeAdmin(user._id)} className='btn btn-primary btn-sm text-white ' > Make Admin </button> }  </td>
-                <td> <button className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
+                <td> <button onClick={()=>deleteUser(user.email)} className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
             </tr> )
             :
             ''

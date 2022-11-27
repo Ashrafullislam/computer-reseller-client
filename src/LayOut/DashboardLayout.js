@@ -26,30 +26,31 @@ const [isSeller] = useSeller(user?.email)
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay" />
           <ul className="menu mt-8 text-primary font-semibold p-4 w-80 bg-base-100 ">
-            {/* <!-- Sidebar content here --> */}
            
-            {/* if isAdmin user.role ? then show the all  user option  */}
-            { isAdmin ?
+          {/* if isAdmin user.role ? then show the all  user option  */}
+          { isAdmin?
             <>
                <li> <NavLink className="mt-4" to='/dashboard/allusers'> All Users</NavLink></li>
                <li> <NavLink className="mt-4" to='/dashboard/seereport' > See Report </NavLink> </li>
                
-            </> 
-            :
-            <> 
-          
-
             </>
-            }
+            :
+            <>
+            <li ><NavLink  className="mt-4 active " to='/dashboard/myorders'> My Orders </NavLink></li>
+            </>
+        
+          }
 
-            {isSeller ?
-                 <li> <NavLink className="mt-4" to='/dashboard/addproducts' > Add Products </NavLink> </li>
-                :
-                <>
-                  <li ><NavLink  className="mt-4 active " to='/dashboard/myorders'> My Orders </NavLink></li>
-          
-                </> 
-            }
+          {isSeller?
+                 <>
+                 <li> <NavLink className="mt-4" to='/dashboard/addproducts' > Add Products </NavLink> </li>  
+                 </>       
+                 :
+                 <>
+                 </>
+          }                   
+    
+         
           </ul>
 
         </div>

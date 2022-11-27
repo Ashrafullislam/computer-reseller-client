@@ -37,6 +37,10 @@ const CategoryProductCard = ({categoryProduct,setProducts}) => {
 
           <label  htmlFor="booking-modal" className={`btn  btn-primary  bg-gradient-to-r from-primary  to-secondary text-white hover:btn-primary p `}                        
              onClick={handleBook}> Book Now </label>
+
+           <label  htmlFor="report-modal" className={`btn  btn-primary  bg-gradient-to-r from-primary to-secondary text-white hover:btn-primary p `}                        
+             onClick={handleBook}> Add Report </label>
+
            
           </div>
         </div>

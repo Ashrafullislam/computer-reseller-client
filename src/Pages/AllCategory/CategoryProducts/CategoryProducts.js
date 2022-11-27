@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import AddReport from '../AddReport/AddReport';
 import BookingModal from '../BookingModal/BookingModal';
 import CategoryProductCard from './CategoryProductCard';
 
@@ -28,6 +29,14 @@ const CategoryProducts = () => {
                 products = {products} setProducts = {setProducts}
                 > 
                 </BookingModal>
+                }
+                {products&&
+                <AddReport  key={products._id}
+                products = {products} setProducts ={setProducts}
+                > 
+
+                </AddReport>
+
                 }
                 
              </div>

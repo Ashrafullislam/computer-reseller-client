@@ -25,7 +25,7 @@ import useToken from '../../../Hook/UseToken/UseToken';
 
   // %%%%%%   handle sign up form  %%%%%%%%% 
     const handleSignUp = (data,e) => {
-    const userType = e.target.userType.value;
+    const role = e.target.role.value;
     createUser(data.email, data.password)
     // console.log(userType)
     .then(result => {
@@ -35,7 +35,7 @@ import useToken from '../../../Hook/UseToken/UseToken';
        UpdateUser(userInfo)
         .then(()=> { 
         // save user function call for created user data save in  database    
-         saveUser(data.name,data.email,userType)
+         saveUser(data.name,data.email,role)
         })
         .catch (err => { console.log(err.message)  } )
         e.target.reset()
@@ -47,9 +47,9 @@ import useToken from '../../../Hook/UseToken/UseToken';
         setSignUpError(err)
     })
 
-    const saveUser = (name,email,userType) =>  {
-        console.log(name,email,userType,'saveuser ')
-        const user = {name,email,userType};
+    const saveUser = (name,email,role) =>  {
+        console.log(name,email,role,'saveuser ')
+        const user = {name,email,role};
         fetch(`http://localhost:5000/users`,{
             method: 'POST',
             headers: {
@@ -112,7 +112,7 @@ import useToken from '../../../Hook/UseToken/UseToken';
         <br />
 
         <label > Select account type buyer or seller </label>
-        <select   className="mt-3 select select-primary w-full max-w-xs" name='userType' >
+        <select   className="mt-3 select select-primary w-full max-w-xs" name='role' >
         <option value="buyer">Buyer</option>
         <option value="seller">Seller</option>
         

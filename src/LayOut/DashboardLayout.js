@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import {NavLink, Outlet} from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import useAdmin from '../Hook/useAdmin/useAdmin';
-import useBuyer from '../Hook/useBuyer/useBuyer';
 import useSeller from '../Hook/useSeller/useSeller';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 
@@ -12,7 +11,9 @@ const  {user} = useContext(AuthContext);
 const [isAdmin] = useAdmin(user?.email)
 // isSeller verify and get access ..if userType is seller 
 const [isSeller] = useSeller(user?.email)
-const [isBuyer] = useBuyer(user?.email)
+console.log(isAdmin,isSeller)
+
+
   return (
     <div>
       <Navbar > </Navbar>
@@ -27,31 +28,37 @@ const [isBuyer] = useBuyer(user?.email)
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay" />
           <ul className="menu mt-8 text-primary font-semibold p-4 w-80 bg-base-100 ">
-           
-          {/* if isAdmin user.role ? then show the all  user option  */}
-          { isAdmin&&
-              <> 
-               <li> <NavLink className="mt-4" to='/dashboard/allusers'> All Users</NavLink></li>
-               <li> <NavLink className="mt-4" to='/dashboard/seereport' > See Report </NavLink> </li>
-               
-               </>
-                   
-               
-          }
 
-          {isSeller&&
+            { isSeller == "buyer" &&
+              <li ><NavLink  className="mt-4 bg-slate-200 " to='/dashboard'> My Orders </NavLink></li>
+            }
+
+          
+
+          {/* if isAdmin user.role ? then show the all  user option  */}
+          {isAdmin&&
+              <> 
+               <li> <NavLink className="mt-4 bg-slate-300" to='/dashboard/allusers'> All Users</NavLink></li>
+               <li> <NavLink className="mt-4 bg-slate-300" to='/dashboard/seereport' > See Report </NavLink> </li>
+               
+             </>
+             
+                 
+          }
+              {/*isSeller?.role == "seller &&  isAdmin?.role == "admin"&&*/}
+          { isSeller == "seller" &&
                  <>
-                <li> <NavLink className="mt-4" to='/dashboard/myproducts' > My  Products </NavLink> </li> 
-                 <li> <NavLink className="mt-4" to='/dashboard/addproducts' > Add Products </NavLink> </li>  
+                <li> <NavLink className="mt-4 bg-slate-200" to='/dashboard/myproducts' > My  Products </NavLink> </li> 
+                 <li> <NavLink className="mt-4 bg-slate-200" to='/dashboard/addproducts' > Add Products </NavLink> </li>  
                  </>  
                                
           }      
-         {isBuyer&&
-         <>
-         <li ><NavLink  className="mt-4  " to='/dashboard/myorders'> My Orders </NavLink></li>
-         </>
+  
+
+           
+        
           
-         }
+        
           </ul>
 
         </div>

@@ -53,7 +53,7 @@ import SellerRoute from '../SellerRoute/SellerRoute';
         path: '/dashboard', element: <PrivetRoute > <DashBoardLayout >  </DashBoardLayout> </PrivetRoute> ,
         children: [
            {
-            path: '/dashboard/myorders', element: <PrivetRoute >  <MyOrders > </MyOrders> </PrivetRoute>
+            path: '/dashboard', element: <PrivetRoute >  <MyOrders > </MyOrders> </PrivetRoute>
            },
            {
             path: '/dashboard/addproducts', element:<SellerRoute >  <AddProducts > </AddProducts> </SellerRoute>

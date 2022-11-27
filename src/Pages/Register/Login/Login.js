@@ -3,6 +3,7 @@ import React, {useContext, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import useToken from '../../../Hook/UseToken/UseToken';
 
 
 const LogInForm = () => {
@@ -14,7 +15,14 @@ const LogInForm = () => {
     const navigate = useNavigate ()
     const from  = location.state?.from?.pathname || "/"
 
-
+     // use token part to  create token and verify
+     const [loginUser ,setLoginUser] = useState('')
+     const [token]  = useToken(loginUser);
+ 
+   if(token){
+     navigate( from ,{replace:true});
+ 
+   }
 
   // source from react-form-hook // usging react form hook 
   const handleLogin = (data, e) => {
@@ -31,8 +39,8 @@ const LogInForm = () => {
       
       setSuccess("User login successfull ")
       setErr('')
+      setLoginUser(data.email)
       e.target.reset()
-      navigate( from ,{replace:true});
        
     })
     .catch(err  => {

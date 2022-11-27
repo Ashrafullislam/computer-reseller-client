@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 import { FaTrashAlt } from 'react-icons/fa';
 import Loading from '../../../Loading/Loading';
 
@@ -16,10 +17,38 @@ const AllUsers = () => {
        }        
     })
 
+
+//------- make admin handlar   ----------/ 
+const handleMakeAdmin = (_id) => {
+    console.log(_id)
+    fetch(`http://localhost:5000/users/admin/${_id}`, {
+        method: 'PUT',
+        headers: {
+            authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+    })
+
+    .then(res => res.json())
+    .then(data  => {
+        if( data.modifiedCount >  0){
+            toast.success('Admin created successfull')
+            refetch()
+  
+          }
+        console.log(data)
+    })
+}
+
+
+
     if(isLoading){
         return <Loading > </Loading>
     }
-    console.log(users)
+    // console.log(users)
+
+
+
+
     return (
         <div>
             <h2 className='text-2xl font-bold my-3 text-primary'> Manage all  users  </h2>
@@ -45,7 +74,7 @@ const AllUsers = () => {
                 <td>{user.name}  </td>
                 <td> {user.email} </td>
                 <td> {user.userType} </td>
-                <td> <button className='btn btn-primary btn-sm text-white ' > Make Admin </button> </td>
+                <td> { user.role !== 'admin' && <button onClick={()=> handleMakeAdmin(user._id)} className='btn btn-primary btn-sm text-white ' > Make Admin </button> }  </td>
                 <td> <button className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
             </tr> )
             :

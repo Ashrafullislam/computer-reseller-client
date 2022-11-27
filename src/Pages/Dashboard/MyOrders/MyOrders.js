@@ -12,7 +12,15 @@ const MyOrders = () => {
     const {data:orders ,isLoading} = useQuery ({
         queryKey:['bookings',user?.email],
         queryFn: async()=> {
-            const res = await fetch(url);
+          
+                 // now get token  from localstorage 
+      const res = await fetch(url, 
+        {
+        headers: {
+            authorization: `bearer ${localStorage.getItem('accessToken')}`,
+        }
+      } 
+      );
             const data = await res.json();
             return data ;
 
@@ -23,6 +31,8 @@ const MyOrders = () => {
     }
     console.log(orders)
 
+
+    
     return (
         <div>
            <h2 className='text-2xl my-3 font-bold text-primary'> My Orders  {orders.length}   </h2>

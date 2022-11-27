@@ -11,6 +11,7 @@ import SeeReport from '../../Pages/Dashboard/SeeReport/SeeReport';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Register/Login/Login';
 import SignUp from '../../Pages/Register/SignUp/SignUp';
+import AdminRoute from '../AdminRoute/AdminRoute';
 import PrivetRoute from '../PrivetRoute/PrivetRoute';
 
 
@@ -56,10 +57,10 @@ import PrivetRoute from '../PrivetRoute/PrivetRoute';
             path: '/dashboard/addproducts', element: <AddProducts > </AddProducts>
            },
            {
-            path: '/dashboard/allusers', element: <AllUsers > </AllUsers>
+            path: '/dashboard/allusers', element: <AdminRoute ><AllUsers > </AllUsers> </AdminRoute>
            },
            {
-            path: '/dashboard/seereport',element: <SeeReport > </SeeReport>
+            path: '/dashboard/seereport',element: <AdminRoute > <SeeReport > </SeeReport> </AdminRoute>
            }
 
            

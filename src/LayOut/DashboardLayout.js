@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import {NavLink, Outlet} from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import useAdmin from '../Hook/useAdmin/useAdmin';
+import useBuyer from '../Hook/useBuyer/useBuyer';
 import useSeller from '../Hook/useSeller/useSeller';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 
@@ -11,7 +12,7 @@ const  {user} = useContext(AuthContext);
 const [isAdmin] = useAdmin(user?.email)
 // isSeller verify and get access ..if userType is seller 
 const [isSeller] = useSeller(user?.email)
-
+const [isBuyer] = useBuyer(user?.email)
   return (
     <div>
       <Navbar > </Navbar>
@@ -28,29 +29,29 @@ const [isSeller] = useSeller(user?.email)
           <ul className="menu mt-8 text-primary font-semibold p-4 w-80 bg-base-100 ">
            
           {/* if isAdmin user.role ? then show the all  user option  */}
-          { isAdmin?
-            <>
+          { isAdmin&&
+              <> 
                <li> <NavLink className="mt-4" to='/dashboard/allusers'> All Users</NavLink></li>
                <li> <NavLink className="mt-4" to='/dashboard/seereport' > See Report </NavLink> </li>
                
-            </>
-            :
-            <>
-            <li ><NavLink  className="mt-4 active " to='/dashboard/myorders'> My Orders </NavLink></li>
-            </>
-        
+               </>
+                   
+               
           }
 
-          {isSeller?
+          {isSeller&&
                  <>
+                <li> <NavLink className="mt-4" to='/dashboard/myproducts' > My  Products </NavLink> </li> 
                  <li> <NavLink className="mt-4" to='/dashboard/addproducts' > Add Products </NavLink> </li>  
-                 </>       
-                 :
-                 <>
-                 </>
-          }                   
-    
-         
+                 </>  
+                               
+          }      
+         {isBuyer&&
+         <>
+         <li ><NavLink  className="mt-4  " to='/dashboard/myorders'> My Orders </NavLink></li>
+         </>
+          
+         }
           </ul>
 
         </div>

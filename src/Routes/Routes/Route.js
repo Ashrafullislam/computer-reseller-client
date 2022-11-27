@@ -7,6 +7,7 @@ import Blog from '../../Pages/Blog/Blog';
 import AddProducts from '../../Pages/Dashboard/AddProducts/AddProducts';
 import AllUsers from '../../Pages/Dashboard/AllUsers/AllUsers';
 import MyOrders from '../../Pages/Dashboard/MyOrders/MyOrders';
+import MyProducts from '../../Pages/Dashboard/MyProducts/MyProducts';
 import SeeReport from '../../Pages/Dashboard/SeeReport/SeeReport';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Register/Login/Login';
@@ -52,10 +53,13 @@ import SellerRoute from '../SellerRoute/SellerRoute';
         path: '/dashboard', element: <PrivetRoute > <DashBoardLayout >  </DashBoardLayout> </PrivetRoute> ,
         children: [
            {
-            path: '/dashboard/myorders', element: <PrivetRoute> <MyOrders > </MyOrders> </PrivetRoute>
+            path: '/dashboard/myorders', element: <PrivetRoute >  <MyOrders > </MyOrders> </PrivetRoute>
            },
            {
             path: '/dashboard/addproducts', element:<SellerRoute >  <AddProducts > </AddProducts> </SellerRoute>
+           },
+           {
+            path: '/dashboard/myproducts', element:<SellerRoute >  <MyProducts  > </MyProducts> </SellerRoute>
            },
            {
             path: '/dashboard/allusers', element: <AdminRoute ><AllUsers > </AllUsers> </AdminRoute>

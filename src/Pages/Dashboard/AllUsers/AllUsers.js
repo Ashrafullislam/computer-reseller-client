@@ -40,7 +40,7 @@ const handleMakeAdmin = (_id) => {
 }
 
 
-// delete order from database 
+// // delete order from database 
 const deleteUser = email => {
 
     fetch(`http://localhost:5000/users/${email}`,{
@@ -95,7 +95,7 @@ const deleteUser = email => {
                 <td> {user.email} </td>
                 <td> {user.userType} </td>
                 <td> { user.role !== 'admin' && <button onClick={()=> handleMakeAdmin(user._id)} className='btn btn-primary btn-sm text-white ' > Make Admin </button> }  </td>
-                <td> <button onClick={()=>deleteUser(user.email)} className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
+                <td> <button onClick={()=> deleteUser(user.email)} className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
             </tr> )
             :
             ''

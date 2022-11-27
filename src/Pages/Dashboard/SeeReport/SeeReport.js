@@ -17,9 +17,9 @@ const SeeReport = () => {
     })
    
 // // delete order from database 
-const deleteReport = email => {
+const deleteReport = id => {
 
-    fetch(`http://localhost:5000/reports/${email}`,{
+    fetch(`http://localhost:5000/reports/${id}`,{
         method:'PUT',
         headers:{
             authorization: `bearer ${localStorage.getItem('accessToken')}`,
@@ -73,7 +73,7 @@ console.log(reports)
                 <td> {report.email} </td>
                 <td> {report.comment} </td>
               
-                <td> <button onClick={()=> deleteReport(report.email)} className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
+                <td> <button onClick={()=> deleteReport(report._id)} className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
             </tr> )
             :
             ''

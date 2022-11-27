@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import {Link, Outlet} from 'react-router-dom';
+import {NavLink, Outlet} from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import useAdmin from '../Hook/useAdmin/useAdmin';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
@@ -22,18 +22,22 @@ const [isAdmin] = useAdmin(user?.email)
         </div>
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay" />
-          <ul className="menu text-primary font-semibold p-4 w-80 bg-base-100 ">
+          <ul className="menu mt-8 text-primary font-semibold p-4 w-80 bg-base-100 ">
             {/* <!-- Sidebar content here --> */}
-            <li ><Link to='/dashboard'> My Orders </Link></li>
-            <li> <Link to='/dashboard/addproducts' > Add Products </Link> </li>
-
+           
             {/* if isAdmin user.role ? then show the all  user option  */}
-            { isAdmin &&
+            { isAdmin ?
             <>
-               <li><Link to='/dashboard/allusers'> All Users</Link></li>
-               <li> <Link to='/dashboard/seereport' > See Report </Link> </li>
-             
+               <li> <NavLink className="mt-4" to='/dashboard/allusers'> All Users</NavLink></li>
+               <li> <NavLink className="mt-4" to='/dashboard/seereport' > See Report </NavLink> </li>
+               
             </> 
+            :
+            <> 
+             <li ><NavLink className="mt-4" to='/dashboard'> My Orders </NavLink></li>
+             <li> <NavLink className="mt-4" to='/dashboard/addproducts' > Add Products </NavLink> </li>
+
+            </>
             }
           </ul>
 

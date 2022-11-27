@@ -51,7 +51,7 @@ import PrivetRoute from '../PrivetRoute/PrivetRoute';
         path: '/dashboard', element: <PrivetRoute > <DashBoardLayout >  </DashBoardLayout> </PrivetRoute> ,
         children: [
            {
-            path: '/dashboard', element: <MyOrders > </MyOrders>
+            path: '/dashboard/myorders', element: <PrivetRoute> <MyOrders > </MyOrders> </PrivetRoute>
            },
            {
             path: '/dashboard/addproducts', element: <AddProducts > </AddProducts>

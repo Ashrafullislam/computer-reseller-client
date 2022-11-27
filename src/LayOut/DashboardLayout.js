@@ -2,12 +2,15 @@ import React, { useContext } from 'react';
 import {NavLink, Outlet} from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import useAdmin from '../Hook/useAdmin/useAdmin';
+import useSeller from '../Hook/useSeller/useSeller';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const DashBoardLayout = () => {
 const  {user} = useContext(AuthContext);
 // call the custom admin check hook , to verify user email role admin
 const [isAdmin] = useAdmin(user?.email)
+// isSeller verify and get access ..if userType is seller 
+const [isSeller] = useSeller(user?.email)
 
   return (
     <div>
@@ -34,10 +37,15 @@ const [isAdmin] = useAdmin(user?.email)
             </> 
             :
             <> 
-             <li ><NavLink className="mt-4" to='/dashboard'> My Orders </NavLink></li>
-             <li> <NavLink className="mt-4" to='/dashboard/addproducts' > Add Products </NavLink> </li>
+             <li ><NavLink  className="mt-4 active " to='/dashboard/myorders'> My Orders </NavLink></li>
+          
 
             </>
+            }
+
+            {isSeller &&
+                 <li> <NavLink className="mt-4" to='/dashboard/addproducts' > Add Products </NavLink> </li>
+
             }
           </ul>
 

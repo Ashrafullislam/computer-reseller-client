@@ -45,7 +45,6 @@ const deleteOrder = id => {
             toast.success('Successfully order deleted')
              refetch()
         }
-        // console.log(data,id)
     })
 }
 

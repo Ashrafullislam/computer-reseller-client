@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { FaTrashAlt } from 'react-icons/fa';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import Loading from '../../../Loading/Loading';
@@ -9,7 +10,7 @@ const MyOrders = () => {
 
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
     // use react query for get user product order info 
-    const {data:orders ,isLoading} = useQuery ({
+    const {data:orders ,isLoading,refetch} = useQuery ({
         queryKey:['bookings',user?.email],
         queryFn: async()=> {
           
@@ -26,6 +27,29 @@ const MyOrders = () => {
 
         }
     })
+
+// delete order from database 
+const deleteOrder = id => {
+
+    fetch(`http://localhost:5000/booking/${id}`,{
+        method:'PUT',
+        headers:{
+            authorization: `bearer ${localStorage.getItem('accessToken')}`,
+
+        }
+
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.deletedCount === 1){
+            toast.success('Successfully order deleted')
+             refetch()
+        }
+        // console.log(data,id)
+    })
+}
+
+
     if(isLoading){
         return <Loading > </Loading>
     }
@@ -63,7 +87,7 @@ const MyOrders = () => {
                 <td> {order.productName} </td>
                 <td> {order.productPrice} </td>
                 <td> <button className='btn text-white btn-primary btn-sm' > Paynow </button> </td>
-                <td> <button className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2' />  </button> </td>
+                <td> <button onClick={()=> deleteOrder(order._id)} className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2' />  </button> </td>
             </tr> )
             :
             ''

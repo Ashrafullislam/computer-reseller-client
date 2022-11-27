@@ -37,15 +37,18 @@ const [isSeller] = useSeller(user?.email)
             </> 
             :
             <> 
-             <li ><NavLink  className="mt-4 active " to='/dashboard/myorders'> My Orders </NavLink></li>
           
 
             </>
             }
 
-            {isSeller &&
+            {isSeller ?
                  <li> <NavLink className="mt-4" to='/dashboard/addproducts' > Add Products </NavLink> </li>
-
+                :
+                <>
+                  <li ><NavLink  className="mt-4 active " to='/dashboard/myorders'> My Orders </NavLink></li>
+          
+                </> 
             }
           </ul>
 

@@ -13,6 +13,7 @@ import Login from '../../Pages/Register/Login/Login';
 import SignUp from '../../Pages/Register/SignUp/SignUp';
 import AdminRoute from '../AdminRoute/AdminRoute';
 import PrivetRoute from '../PrivetRoute/PrivetRoute';
+import SellerRoute from '../SellerRoute/SellerRoute';
 
 
   const router = createBrowserRouter ([
@@ -54,7 +55,7 @@ import PrivetRoute from '../PrivetRoute/PrivetRoute';
             path: '/dashboard/myorders', element: <PrivetRoute> <MyOrders > </MyOrders> </PrivetRoute>
            },
            {
-            path: '/dashboard/addproducts', element: <AddProducts > </AddProducts>
+            path: '/dashboard/addproducts', element:<SellerRoute >  <AddProducts > </AddProducts> </SellerRoute>
            },
            {
             path: '/dashboard/allusers', element: <AdminRoute ><AllUsers > </AllUsers> </AdminRoute>

@@ -5,7 +5,7 @@ const HomeProductsCard = ({category}) => {
     const {title,brand,originalPrice,reselPrice,photoURL,category_id,_id} = category ;
   return (
     <div>
-      <div className=" mx-auto my-10 card w-4/5 text-black bg-base-100 shadow-xl">
+      <div data-aos="zoom-in" className=" mx-auto my-10 card w-4/5 text-black bg-base-100 shadow-xl">
         <figure>
           <img src={photoURL} className= 'h-96 w-full' alt="computer" />
         </figure>

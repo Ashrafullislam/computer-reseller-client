@@ -34,7 +34,7 @@ const AddProducts = () => {
           sellerName,
           yearsOfUse,
           conditionType,
-          date,
+          postedTime:date,
           status:"available"
          }
 
@@ -150,7 +150,7 @@ const AddProducts = () => {
         </div>
 
         </div>
-        <div className=" flex justify-center  mt-4">
+        <div className=" flex justify-center  mt-4 mb-4">
         <input type="submit" className='btn btn-primary' value="Add Products" />
         </div>
        </form>

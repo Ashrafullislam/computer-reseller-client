@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
+import { FaArrowAltCircleRight, FaUsersCog } from 'react-icons/fa';
 import {NavLink, Outlet} from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import useAdmin from '../Hook/useAdmin/useAdmin';
 import useSeller from '../Hook/useSeller/useSeller';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 import './DashBoardLayout.css';
+import { BsClipboardCheck, BsJournalPlus } from "react-icons/bs";
+
 
 const DashBoardLayout = () => {
 const  {user} = useContext(AuthContext);
@@ -39,8 +42,8 @@ const [isSeller] = useSeller(user?.email)
           {/* if isAdmin user.role ? then show the all  user option  */}
           {isAdmin&&
               <> 
-               <li> <NavLink className="mt-4 bg-slate-300" to='/dashboard/allusers'> All Users</NavLink></li>
-               <li> <NavLink className="mt-4 bg-slate-300" to='/dashboard/seereport' > See Report </NavLink> </li>
+               <li> <NavLink className="mt-4 bg-slate-300" to='/dashboard/allusers'><FaUsersCog /> All Users</NavLink></li>
+               <li> <NavLink className="mt-4 bg-slate-300" to='/dashboard/seereport' > <BsClipboardCheck  />  See Report </NavLink> </li>
                
              </>
              
@@ -49,8 +52,8 @@ const [isSeller] = useSeller(user?.email)
               {/*isSeller?.role == "seller &&  isAdmin?.role == "admin"&&*/}
           { isSeller == "seller" &&
                  <>
-                <li> <NavLink className="mt-4 bg-slate-200" to='/dashboard/myproducts' > My  Products </NavLink> </li> 
-                 <li> <NavLink className="mt-4 bg-slate-200" to='/dashboard/addproducts' > Add Products </NavLink> </li>  
+                <li> <NavLink className="mt-4 bg-slate-200" to='/dashboard/myproducts' > My  Products <FaArrowAltCircleRight /> </NavLink> </li> 
+                 <li> <NavLink className="mt-4 bg-slate-200" to='/dashboard/addproducts' > Add Products <BsJournalPlus  /> </NavLink> </li>  
                  </>  
                                
           }      

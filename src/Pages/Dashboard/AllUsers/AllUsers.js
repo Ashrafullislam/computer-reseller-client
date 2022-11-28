@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaLock, FaTrashAlt, FaUserTie } from 'react-icons/fa';
 import Loading from '../../../Loading/Loading';
 
 const AllUsers = () => {
@@ -39,6 +39,26 @@ const handleMakeAdmin = (_id) => {
     })
 }
 
+// handle user verify 
+const handleUserVerify = (_id) => {
+    console.log(_id)
+    fetch(`http://localhost:5000/users/verify/${_id}`, {
+        method: 'PUT',
+        headers: {
+            authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+    })
+
+    .then(res => res.json())
+    .then(data  => {
+        if( data.modifiedCount >  0){
+            toast.success('User verified successfull')
+            refetch()
+  
+          }
+        console.log(data)
+    })
+}
 
 // // delete order from database 
 const deleteUser = email => {
@@ -82,6 +102,7 @@ const deleteUser = email => {
             <th>  Name </th>
             <th> Email </th>
             <th> User Role   </th>
+            <th> Verify User  </th>
             <th> Make Admin </th>
             <th> Delete </th>
         </tr>
@@ -94,7 +115,10 @@ const deleteUser = email => {
                 <td>{user.name}  </td>
                 <td> {user.email} </td>
                 <td> {user.role} </td>
-                <td> { user.role !== 'admin' && <button onClick={()=> handleMakeAdmin(user._id)} className='btn btn-primary btn-sm text-white ' > Make Admin </button> }  </td>
+                <td> { user.verify !== 'verified' && <button onClick={()=> handleUserVerify(user._id)} className='btn btn-primary btn-sm text-white ' >  Verify <FaLock className='ml-2' />  </button> }  </td>
+                
+                <td> { user.role !== 'admin' && <button onClick={()=> handleMakeAdmin(user._id)} className='btn btn-primary btn-sm text-white ' >  Make Admin <FaUserTie className='ml-2' />  </button> }  </td>
+
                 <td> <button onClick={()=> deleteUser(user.email)} className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
             </tr> )
             :

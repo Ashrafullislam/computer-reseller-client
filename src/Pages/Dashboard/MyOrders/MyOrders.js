@@ -10,7 +10,7 @@ const MyOrders = () => {
 
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
     // use react query for get user product order info 
-    const {data:orders ,isLoading,refetch} = useQuery ({
+    const {data:orders = [] ,isLoading,refetch} = useQuery ({
         queryKey:['bookings',user?.email],
         queryFn: async()=> {
           
@@ -76,7 +76,7 @@ const deleteOrder = id => {
         </tr>
         </thead>
         <tbody className='text-primary'>
-         { orders?
+        { orders  == [] &&
             orders?.map((order ,i) =>   
             <tr key={order._id}>
                 <th> {i+1} </th>
@@ -88,8 +88,7 @@ const deleteOrder = id => {
                 <td> <button className='btn text-white btn-primary btn-sm' > Paynow </button> </td>
                 <td> <button onClick={()=> deleteOrder(order._id)} className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2' />  </button> </td>
             </tr> )
-            :
-            ''
+          
         }
          
        </tbody>

@@ -1,10 +1,9 @@
-import colorNames from 'daisyui/src/colors/colorNames';
 import React, { useContext } from 'react';
-import { FaCommentSlash, FaUserAlt } from 'react-icons/fa';
+import { BsPower } from 'react-icons/bs';
+import { FaAngleDown } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import Logo from '../../../Image/logo.png';
-import Loading from '../../../Loading/Loading';
 import './Navbar.css'
 const Navbar = () => {
 const {user,LogOutUser} = useContext(AuthContext)
@@ -16,7 +15,7 @@ const {user,LogOutUser} = useContext(AuthContext)
      <li> <NavLink to= '/dashboard'> Dashboard  </NavLink> </li>
      {user?
        <>
-      <li> <Link onClick={LogOutUser} > Log out </Link>  </li> 
+      <li> <Link onClick={LogOutUser} > Log out<BsPower className='text-white text-lg' /> </Link>  </li> 
       </>
       :
       <li> <Link to= '/login' > Log in </Link>  </li>       
@@ -59,7 +58,9 @@ const {user,LogOutUser} = useContext(AuthContext)
        </div>
         {
           user?
-          <span className='text-lg font-bold'> {user?.displayName} </span>
+        
+          <span className='text-lg font-bold'> {user?.displayName} <FaAngleDown  /> </span>
+
           :
          ''
         }

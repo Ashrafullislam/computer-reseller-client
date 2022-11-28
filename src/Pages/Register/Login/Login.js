@@ -59,7 +59,7 @@ const LogInForm = () => {
       const userResult = result.user;
       const email = userResult.email;
       const name = userResult.displayName;
-    //   googleSignSaveUser(name,email)
+       googleSignSaveUser(name,email)
       console.log(email,name,'login')  
      })
      .catch(err => {
@@ -67,8 +67,26 @@ const LogInForm = () => {
       console.log(error)
      })
 
+                 // make a function to save user info in database and get create token 
+    const googleSignSaveUser = (name,email) => {
+      const user = {name,email,role:'buyer'};
+      fetch(`https://computer-reseller-server.vercel.app/users`, {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json'
+          },
+          body:JSON.stringify(user)
+      })
+      .then(res => res.json())
+      .then(data => {
+          console.log('save  user ',data)
+          if(data.acknowledged){
+            setLoginUser(email)
+          }                
 
+      })
   }
+}
   
   const {register,formState:{errors}, handleSubmit} = useForm ();
 

@@ -76,7 +76,7 @@ import useToken from '../../../Hook/UseToken/UseToken';
             const userResult = result.user ;
             const email = userResult.email;
             const name = userResult.displayName;
-            
+            googleSignSaveUser(name,email)
             toast.success(" Google Log in successfull ")
         })
         .catch(err => {
@@ -85,6 +85,25 @@ import useToken from '../../../Hook/UseToken/UseToken';
             setSignUpError(error)
            
         })
+               // make a function to save user info in database and get create token 
+    const googleSignSaveUser = (name,email) => {
+        const user = {name,email,role:'buyer'};
+        fetch(`https://computer-reseller-server.vercel.app/users`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body:JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('save  user ',data)
+            if(data.acknowledged){
+                setCreatedUserEmail(email)
+            }                
+  
+        })
+    }
     }
  
     return (

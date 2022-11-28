@@ -1,7 +1,6 @@
 import React from 'react';
 import banner1 from '../../../Image/banner1.jpg'
 import banner2 from '../../../Image/banner2.png'
-import banner3 from '../../../Image/banner3.png'
 import banner4 from '../../../Image/banner4.jpeg'
 import './Carousel.css' ;
 
@@ -12,7 +11,7 @@ import './Carousel.css' ;
 
 
   <div id="slide1" className="carousel-item relative w-full">
-    <img src={banner3} alt = '' className="w-full" />
+    <img src={banner4} alt = '' className="w-full" />
     <div className="absolute flex justify-start  transform -translate-y-1/2 left-5 right-5 top-1/3">
         <div>
         <h3 className=' lg:text-4xl md:text-3xl text-2xl lg:ml-10 font-bold h-4 text-zinc-200' >  Available Wonderfull Desktop <br />

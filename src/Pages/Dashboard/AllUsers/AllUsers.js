@@ -7,7 +7,7 @@ import Loading from '../../../Loading/Loading';
 const AllUsers = () => {
     
     // get all  users from database and set it ui 
-    const url = `http://localhost:5000/users`;
+    const url = `https://computer-reseller-server.vercel.app/users`;
     const {data:users,isLoading,refetch} = useQuery({
        queryKey:['users'],
        queryFn: async() => {
@@ -21,7 +21,7 @@ const AllUsers = () => {
 //------- make admin handlar   ----------/ 
 const handleMakeAdmin = (_id) => {
     console.log(_id)
-    fetch(`http://localhost:5000/users/admin/${_id}`, {
+    fetch(`https://computer-reseller-server.vercel.app/users/admin/${_id}`, {
         method: 'PUT',
         headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -42,7 +42,7 @@ const handleMakeAdmin = (_id) => {
 // handle user verify 
 const handleUserVerify = (_id) => {
     console.log(_id)
-    fetch(`http://localhost:5000/users/verify/${_id}`, {
+    fetch(`https://computer-reseller-server.vercel.app/users/verify/${_id}`, {
         method: 'PUT',
         headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -63,7 +63,7 @@ const handleUserVerify = (_id) => {
 // // delete order from database 
 const deleteUser = email => {
 
-    fetch(`http://localhost:5000/users/${email}`,{
+    fetch(`https://computer-reseller-server.vercel.app/users/${email}`,{
         method:'PUT',
         headers:{
             authorization: `bearer ${localStorage.getItem('accessToken')}`,

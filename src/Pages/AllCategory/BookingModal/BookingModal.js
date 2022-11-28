@@ -33,7 +33,7 @@ const BookingModal = ({products,setProducts}) => {
       photoURL
   }
    // send data client to server 
-   fetch(`http://localhost:5000/bookings`, {
+   fetch(`https://computer-reseller-server.vercel.app/bookings`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json'

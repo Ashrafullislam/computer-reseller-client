@@ -6,7 +6,7 @@ import Loading from '../../../Loading/Loading';
 
 const SeeReport = () => {
    
-    const url = `http://localhost:5000/reports`
+    const url = `https://computer-reseller-server.vercel.app/reports`
     const {data:reports,isLoading,refetch} = useQuery({
        queryKey:['reports'],
        queryFn: async() => {
@@ -19,7 +19,7 @@ const SeeReport = () => {
 // // delete order from database 
 const deleteReport = id => {
 
-    fetch(`http://localhost:5000/reports/${id}`,{
+    fetch(`https://computer-reseller-server.vercel.app/reports/${id}`,{
         method:'PUT',
         headers:{
             authorization: `bearer ${localStorage.getItem('accessToken')}`,

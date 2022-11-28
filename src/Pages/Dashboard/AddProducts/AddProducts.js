@@ -3,6 +3,7 @@ import Toast, { toast }  from 'react-hot-toast'
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 const AddProducts = () => {
     const {user} = useContext(AuthContext)
+    console.log(user)
     const d = new Date();
     let date = d.toLocaleDateString();
    
@@ -38,7 +39,7 @@ const AddProducts = () => {
           status:"available"
          }
 
-         fetch('http://localhost:5000/products', {
+         fetch('https://computer-reseller-server.vercel.app/products', {
            method:'POST',
            headers:{
              'content-type': 'application/json'

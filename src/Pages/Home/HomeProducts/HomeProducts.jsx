@@ -9,7 +9,7 @@ const HomeProducts = () => {
      
     //load only category 
     useEffect(()=> {
-        fetch('http://localhost:5000/categories')
+        fetch('https://computer-reseller-server.vercel.app/categories')
         .then(res => res.json())
         .then(category => setCategories(category))
     },[])

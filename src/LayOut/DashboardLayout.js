@@ -15,7 +15,6 @@ const  {user} = useContext(AuthContext);
 const [isAdmin] = useAdmin(user?.email)
 // isSeller verify and get access ..if userType is seller 
 const [isSeller] = useSeller(user?.email)
-// console.log(isAdmin,isSeller)
 
 
   return (
@@ -25,7 +24,6 @@ const [isSeller] = useSeller(user?.email)
         <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* <!-- Page content here --> */}
-
           <Outlet> </Outlet>
        
         </div>
@@ -34,7 +32,7 @@ const [isSeller] = useSeller(user?.email)
           <ul className="menu mt-8 text-primary font-semibold p-4 w-80 bg-base-100 ">
 
             { isSeller == "buyer" &&
-              <li ><NavLink  className="mt-4 bg-slate-200 " to='/dashboard'> My Orders </NavLink></li>
+              <li ><NavLink  className="mt-4 bg-slate-200 " to='/dashboard/myorders'> My Orders </NavLink></li>
             }
 
           

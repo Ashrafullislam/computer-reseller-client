@@ -39,7 +39,7 @@ import SellerRoute from '../SellerRoute/SellerRoute';
             {
                 path: '/categoryProducts/:id',
                 loader:({params}) =>  {
-                    return fetch(`http://localhost:5000/categoryProducts/${params.id}`)
+                    return fetch(`https://computer-reseller-server.vercel.app/categoryProducts/${params.id}`)
                 } ,
                 element: <PrivetRoute > <CategoryProducts > </CategoryProducts>  </PrivetRoute>  
             },
@@ -53,7 +53,7 @@ import SellerRoute from '../SellerRoute/SellerRoute';
         path: '/dashboard', element: <PrivetRoute > <DashBoardLayout >  </DashBoardLayout> </PrivetRoute> ,
         children: [
            {
-            path: '/dashboard', element: <PrivetRoute >  <MyOrders > </MyOrders> </PrivetRoute>
+            path: '/dashboard/myorders', element: <PrivetRoute >  <MyOrders > </MyOrders> </PrivetRoute>
            },
            {
             path: '/dashboard/addproducts', element:<SellerRoute >  <AddProducts > </AddProducts> </SellerRoute>

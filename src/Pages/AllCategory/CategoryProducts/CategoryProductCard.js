@@ -1,13 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
 import {  FaClock, FaMapMarkerAlt, FaUserAlt } from 'react-icons/fa';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const CategoryProductCard = ({categoryProduct,setProducts}) => {
     const {brand,conditionType,postedTime,sellerName, sellerLocation ,hardDrive,photoURL,originalPrice,reselPrice,title,status} = categoryProduct ;
-   console.log(categoryProduct)
+ 
+   const {user} = useContext(AuthContext);
+   console.log(user,'user email ')
+  
+
+    // make an handlar and send products info for set state 
     const handleBook  = () => {
         setProducts(categoryProduct)
     }
+
     return (
         <div>
          <div className=" mx-auto my-10 card w-4/5 text-black bg-base-100 shadow-xl">
@@ -51,7 +57,7 @@ const CategoryProductCard = ({categoryProduct,setProducts}) => {
           </div>
         </div>
       </div>
-        </div>
+    </div>
     );
 };
 

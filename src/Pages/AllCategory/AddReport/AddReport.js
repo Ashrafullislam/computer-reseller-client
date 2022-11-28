@@ -20,7 +20,7 @@ const AddReport = ({products,setProducts}) => {
            comment
         }
         console.log(userReport);
-        fetch('http://localhost:5000/reports', {
+        fetch('https://computer-reseller-server.vercel.app/reports', {
           method:'POST',
           headers:{
             'content-type': 'application/json'

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+
 import AddReport from '../AddReport/AddReport';
 import BookingModal from '../BookingModal/BookingModal';
 import CategoryProductCard from './CategoryProductCard';
@@ -7,6 +8,7 @@ import CategoryProductCard from './CategoryProductCard';
 const CategoryProducts = () => {
     const categoryProducts = useLoaderData();
     const [products,setProducts] = useState(null) ;
+   
     return (
         <div>
             <div className=' mt-6 bg-primary py-3  shadow-lg w-1/2 rounded-tl-2xl rounded-br-2xl mx-auto '>

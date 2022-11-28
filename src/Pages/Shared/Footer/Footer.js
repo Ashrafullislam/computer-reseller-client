@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import footer from '../../../Image/Footer.svg';
 
@@ -22,13 +23,21 @@ const Footer = () => {
     <Link to = " /" className="link link-hover">Marketing</Link>
     <Link to = " /" className="link link-hover">Advertisement</Link>
   </div> 
+
   <div className='flex flex-col items-center w-full'>
     <span className="footer-title">Company</span> 
     <Link to = " /" className="link link-hover">About us</Link>
     <Link to = " /" className="link link-hover">Contact</Link>
     <Link to = " /" className="link link-hover">Jobs</Link>
     <Link to = " /" className="link link-hover">Press kit</Link>
+    <div className='flex  gap-2 mt-3'>
+    <Link to = " /" className="link link-hover "> <FaFacebook className=' text-2xl' /> </Link>
+    <Link to = " /" className="link link-hover ">  <FaTwitter className=' text-2xl'/>  </Link>
+    <Link to = " /" className="link link-hover "> <FaInstagram className='text-2xl' />  </Link>
+    <Link to = " /" className="link link-hover "> <FaLinkedin className=' text-2xl' /> </Link>
+    </div>
   </div> 
+
   <div className='flex flex-col items-center w-full'>
     <span className="footer-title text-start">Legal</span> 
     <Link to = " /" className="link link-hover ">Terms of use</Link>

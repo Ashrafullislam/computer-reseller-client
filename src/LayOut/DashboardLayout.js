@@ -12,7 +12,7 @@ const  {user} = useContext(AuthContext);
 const [isAdmin] = useAdmin(user?.email)
 // isSeller verify and get access ..if userType is seller 
 const [isSeller] = useSeller(user?.email)
-console.log(isAdmin,isSeller)
+// console.log(isAdmin,isSeller)
 
 
   return (

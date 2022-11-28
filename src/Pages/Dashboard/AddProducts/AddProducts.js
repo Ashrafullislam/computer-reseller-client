@@ -5,53 +5,58 @@ const AddProducts = () => {
     const {user} = useContext(AuthContext)
     const d = new Date();
     let date = d.toLocaleDateString();
+   
 
     const handleAddProduct =event=> {
         event.preventDefault();
+
         const form = event.target;
         const brand = form.name.value;
         const photoURL = form.photo.value;
         const sellerLocation = form.location.value;
         const originalPrice = form.originalPrice.value;
         const reselPrice = form.resellPrice.value;
-        const title = form.condition.value;
+        const title = form.title.value;
         const category_id = form.category.value;
         const yearsOfUse = form.year.value;
         const conditionType = form.condition.value;
         const sellerName = form.seller.value;
-       
-        const addProduct ={
-         brand,
-         photoURL,
-         sellerLocation,
-         originalPrice,
-         reselPrice,
-         title,
-         category_id,
-         sellerName,
-         yearsOfUse,
-         conditionType,
-         date,
-         status:"available"
 
-         
-        }
-        console.log(addProduct);
-        fetch('http://localhost:5000/products', {
-          method:'POST',
-          headers:{
-            'content-type': 'application/json'
-          },
-          body:JSON.stringify(addProduct)
-        })
-        .then(res=>res.json())
-        .then(data=> {
-            console.log(data);
-            if(data.acknowledged){
-                toast.success('Your products successfully added ')
-            }
-        })
-    }
+     
+        const addProduct = {
+          brand,
+          photoURL,
+          sellerLocation,
+          originalPrice,
+          reselPrice,
+          title,
+          category_id,
+          sellerName,
+          yearsOfUse,
+          conditionType,
+          date,
+          status:"available"
+         }
+
+         fetch('http://localhost:5000/products', {
+           method:'POST',
+           headers:{
+             'content-type': 'application/json'
+           },
+           body:JSON.stringify(addProduct)
+         })
+         .then(res=>res.json())
+         .then(data=> {
+             console.log(data);
+             if(data.acknowledged){
+                 toast.success('Your products successfully added ')
+             }
+         })
+      
+  }
+
+  
+
     return (
     <div className='shadow-2xl'>
         <div className="card flex-shrink-0 w-full  mt-5 mb-10  ">
@@ -69,21 +74,21 @@ const AddProducts = () => {
           <label className="label">
             <span className="">Product Image</span>
           </label>
-          <input type="text" name='photo' required placeholder="Image URL" className="input input-bordered bg-stone-100 text-primary " />
+          <input type="url" name='photo' required placeholder="Image URL" className="input input-bordered bg-stone-100 text-primary " />
         </div>
   
         <div  className="form-control">
           <label className="label">
             <span className="">Product Title</span>
           </label>
-          <input type="text" name='condition' required placeholder="Title" className="input input-bordered bg-stone-100 text-primary " />
+          <input type="text" name='title' required placeholder="Title" className="input input-bordered bg-stone-100 text-primary " />
         </div>
 
        
 
         <div  className="form-control">
           <label className="label">
-            <span className="">Oringinal Price</span>
+            <span className="">Original Price</span>
           </label>
           <input type="text" name='originalPrice' required placeholder="Original Price" className="input input-bordered bg-stone-100 text-primary" />
         </div>
@@ -104,13 +109,13 @@ const AddProducts = () => {
         
         <div  className="form-control">
           <label className="label">
-            <span className="">Product Category 1 or 2 or 3</span>
+            <span className="">Select Products Category  </span>
         </label>
         <select   className="mt-3 select border-0 bg-stone-100 select-primary text-primary w-full " name='category' >
-        <option value="category_id:1"> Desktop </option>
-        <option value="category_id:2">Apple Mac</option>
-        <option value="category_id:3">Laptop </option>
-        <option value="category_id:4">Tablet </option>
+        <option value="1"> Desktop </option>
+        <option value="2">Apple Mac</option>
+        <option value="3">Laptop </option>
+        <option value="4">Tablet </option>
         
          </select>
       

@@ -1,5 +1,6 @@
 # computer-reseller website  : https://computer-resell.firebaseapp.com/
 # It is a single page dynamic fullstack projcects ;
+admin email: admin2gmail.com pass:123456 
 
 # This projects create-for resell the second  hand  Desktop,Laptop,Tablet,Mac 
  

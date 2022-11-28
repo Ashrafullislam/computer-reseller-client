@@ -81,7 +81,7 @@ const deleteUser = email => {
             <th></th>
             <th>  Name </th>
             <th> Email </th>
-            <th> User Type   </th>
+            <th> User Role   </th>
             <th> Make Admin </th>
             <th> Delete </th>
         </tr>
@@ -93,7 +93,7 @@ const deleteUser = email => {
                 <td> {i+1} </td>
                 <td>{user.name}  </td>
                 <td> {user.email} </td>
-                <td> {user.userType} </td>
+                <td> {user.role} </td>
                 <td> { user.role !== 'admin' && <button onClick={()=> handleMakeAdmin(user._id)} className='btn btn-primary btn-sm text-white ' > Make Admin </button> }  </td>
                 <td> <button onClick={()=> deleteUser(user.email)} className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
             </tr> )

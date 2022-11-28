@@ -4,6 +4,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import useAdmin from '../Hook/useAdmin/useAdmin';
 import useSeller from '../Hook/useSeller/useSeller';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
+import './DashBoardLayout.css';
 
 const DashBoardLayout = () => {
 const  {user} = useContext(AuthContext);

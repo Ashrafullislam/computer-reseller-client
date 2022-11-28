@@ -44,7 +44,7 @@ console.log(reports)
 
 
     return (
-        <div>
+        <div className='full px-4'>
             <h2 className='text-2xl font-bold my-3 text-primary'> See all report  </h2>
             <div>
             <div>
@@ -68,12 +68,12 @@ console.log(reports)
             <tr key={report._id}>
                 <td> {i+1} </td>
                 <td> <img src={report.photo} className  ="w-16 h-16" alt='' /> </td>
-                <td>{report.Name}  </td>
+                <td >{report.Name}  </td>
                  <td> {report.Price} </td>
                 <td> {report.email} </td>
                 <td> {report.comment} </td>
               
-                <td> <button onClick={()=> deleteReport(report._id)} className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
+                <td className='flex'> <button onClick={()=> deleteReport(report._id)} className='btn bg-blue-500 btn-sm text-white ' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
             </tr> )
             :
             ''

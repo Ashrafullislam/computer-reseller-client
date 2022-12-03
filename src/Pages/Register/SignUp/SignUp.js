@@ -26,6 +26,7 @@ import useToken from '../../../Hook/UseToken/UseToken';
   // %%%%%%   handle sign up form  %%%%%%%%% 
     const handleSignUp = (data,e) => {
     const role = e.target.role.value;
+    const verify = "null";
     createUser(data.email, data.password)
     // console.log(userType)
     .then(result => {
@@ -35,7 +36,7 @@ import useToken from '../../../Hook/UseToken/UseToken';
        UpdateUser(userInfo)
         .then(()=> { 
         // save user function call for created user data save in  database    
-         saveUser(data.name,data.email,role)
+         saveUser(data.name,data.email,role,verify)
         })
         .catch (err => { console.log(err.message)  } )
         e.target.reset()
@@ -47,9 +48,10 @@ import useToken from '../../../Hook/UseToken/UseToken';
         setSignUpError(err)
     })
 
-    const saveUser = (name,email,role) =>  {
+    
+    const saveUser = (name,email,role,verify) =>  {
         console.log(name,email,role,'saveuser ')
-        const user = {name,email,role};
+        const user = {name,email,role,verify};
         fetch(`https://computer-reseller-server.vercel.app/users`,{
             method: 'POST',
             headers: {

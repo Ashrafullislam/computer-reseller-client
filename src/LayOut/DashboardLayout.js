@@ -20,16 +20,16 @@ const [isSeller] = useSeller(user?.email)
   return (
     <div>
       <Navbar > </Navbar>
-      <div className="drawer drawer-mobile">
-        <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
+      <div className="drawer drawer-mobile ">
+        <input id="dashboard-drawer" type="checkbox" className="drawer-toggle"  />
         <div className="drawer-content">
           {/* <!-- Page content here --> */}
           <Outlet> </Outlet>
        
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side w-48 mr-4 ">
           <label htmlFor="dashboard-drawer" className="drawer-overlay" />
-          <ul className="menu mt-8 text-primary font-semibold p-4 w-80 bg-base-100 ">
+          <ul className="menu mt-8 text-primary w-52 font-semibold p-4 w-80 bg-base-100 ">
 
             { isSeller == "buyer" &&
               <li ><NavLink  className="mt-4 bg-slate-200 " to='/dashboard/myorders'> My Orders </NavLink></li>
@@ -56,7 +56,6 @@ const [isSeller] = useSeller(user?.email)
                                
           }      
            
-        
           </ul>
 
         </div>

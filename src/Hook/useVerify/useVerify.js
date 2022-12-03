@@ -7,13 +7,13 @@ const useVerify = email =>  {
 
     useEffect(()=> {
         if(email){
-            fetch(`https://computer-reseller-server.vercel.app/users/verify/${email}`,{
+            fetch(`http://localhost:5000/users/verify/${email}`,{
 
             })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                setIsVerify(data.isSeller)
+                setIsVerify(data)
                 setIsVerifyLoading(false)
             })
 

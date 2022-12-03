@@ -52,10 +52,8 @@ const deleteOrder = id => {
     if(isLoading){
         return <Loading > </Loading>
     }
-    console.log(orders)
 
 
-    
     return (
         <div>
         <h2 className='text-2xl font-bold my-3 text-primary'> Manage all  users  </h2>
@@ -72,6 +70,7 @@ const deleteOrder = id => {
             <th> Booking Date </th>
             <th> Product Name </th>
             <th> Price </th>
+            <th> Payment </th>
             <th> Delete </th>
      
     </tr>
@@ -87,6 +86,7 @@ const deleteOrder = id => {
                 <td> {order.productName} </td>
                 <td> {order.productPrice} </td>
          
+            <td> <button onClick={()=> deleteOrder(order._id)} className='btn bg-blue-500 btn-sm text-white' > Paynow <FaTrashAlt className='ml-2'/> </button> </td>
             <td> <button onClick={()=> deleteOrder(order._id)} className='btn bg-blue-500 btn-sm text-white' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
         </tr> )
         :

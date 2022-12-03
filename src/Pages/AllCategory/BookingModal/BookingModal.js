@@ -11,7 +11,7 @@ const BookingModal = ({products,setProducts}) => {
   console.log(products.photoURL ,'products ')
 
   const productBookingHandlar = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const form = event.target ;
     const date = form.bookingDate.value ;
     const productName = form.productName.value ;
@@ -43,12 +43,12 @@ const BookingModal = ({products,setProducts}) => {
    .then(res => res.json())
    .then(bookingResult => {
     if(bookingResult.acknowledged){
+      setProducts(null) 
       toast.success(`Successfully booking on ${productName}`)
-      setProducts(null)
+     
+      
     }
-    console.log(bookingResult)
    })
-  // console.log(booking,'booking')
 
   }
 

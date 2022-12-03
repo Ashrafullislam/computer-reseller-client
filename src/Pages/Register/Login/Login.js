@@ -79,9 +79,9 @@ const LogInForm = () => {
       })
       .then(res => res.json())
       .then(data => {
-          console.log('save  user ',data)
           if(data.acknowledged){
             setLoginUser(email)
+            // navigate(from,{replace:true})
           }                
 
       })

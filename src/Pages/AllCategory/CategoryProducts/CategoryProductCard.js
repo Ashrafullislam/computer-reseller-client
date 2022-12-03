@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
-import {  FaClock, FaMapMarkerAlt, FaUserAlt } from 'react-icons/fa';
+import {  FaCheckCircle, FaClock, FaMapMarkerAlt, FaUserAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const CategoryProductCard = ({categoryProduct,setProducts}) => {
-    const {brand,conditionType,postedTime,sellerName, sellerLocation ,hardDrive,photoURL,originalPrice,reselPrice,title,status} = categoryProduct ;
+    const {brand,conditionType,postedTime,sellerName, sellerLocation ,hardDrive,photoURL,originalPrice,reselPrice,title,status,verify,_id} = categoryProduct ;
  
    const {user} = useContext(AuthContext);
-   console.log(user,'user email ')
-  
 
     // make an handlar and send products info for set state 
     const handleBook  = () => {
@@ -15,17 +14,18 @@ const CategoryProductCard = ({categoryProduct,setProducts}) => {
     }
 
     return (
-        <div>
+  
+          <div>
          <div className=" mx-auto my-10 card w-4/5 text-black bg-base-100 shadow-xl">
         <figure>
           <img src={photoURL} className= ' h-72 w-full' alt="computer" />
         </figure>
         <div className=" h-[55vh] px-10 relative mt-3 ">
           <h2 className="card-title text-primary text-2xl">
-            {title}
+            {brand}
            
           </h2>
-          <p>{brand}</p>
+          <p>{title}</p>
           <p> Hard-drive: {hardDrive} </p> 
           <p> Conditon: {conditionType} </p>
           <p> Original Price: <b> {originalPrice}</b>  BDT </p>
@@ -41,9 +41,16 @@ const CategoryProductCard = ({categoryProduct,setProducts}) => {
             </div> 
             <div className='flex items-center'>
             <FaUserAlt className='mr-2 text-primary' />
-            <p>   Seller :  {sellerName} </p>
+            <p>   Seller :  {sellerName} 
+           </p>
+           {verify == "verified"?
+              <FaCheckCircle className='text-primary ml-3' />
+              :
+              ''      
+            } 
 
             </div>
+            <Link  to={`/productsDetails/${_id}`} className='text-blue-500' > More Details   </Link>
 
           <div className="card-actions flex justify-end absolute bottom-0 right-0 p-5 ">
 
@@ -57,7 +64,8 @@ const CategoryProductCard = ({categoryProduct,setProducts}) => {
           </div>
         </div>
       </div>
-    </div>
+     </div>
+  
     );
 };
 

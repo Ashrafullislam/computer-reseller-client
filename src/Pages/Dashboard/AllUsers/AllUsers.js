@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
-import { FaLock, FaTrashAlt, FaUserTie } from 'react-icons/fa';
+import { FaLock, FaLockOpen, FaTrashAlt, FaUserTie } from 'react-icons/fa';
 import Loading from '../../../Loading/Loading';
 
 const AllUsers = () => {
@@ -33,15 +33,15 @@ const handleMakeAdmin = (_id) => {
         if( data.modifiedCount >  0){
             toast.success('Admin created successfull')
             refetch()
-  
+    
           }
         console.log(data)
     })
 }
 
-// handle user verify 
+// ========handle user verify=========== 
 const handleUserVerify = (_id) => {
-    console.log(_id)
+    // console.log(_id)
     fetch(`https://computer-reseller-server.vercel.app/users/verify/${_id}`, {
         method: 'PUT',
         headers: {
@@ -115,7 +115,13 @@ const deleteUser = email => {
                 <td>{user.name}  </td>
                 <td> {user.email} </td>
                 <td> {user.role} </td>
-                <td> { user.verify !== 'verified' && <button onClick={()=> handleUserVerify(user._id)} className='btn btn-primary btn-sm text-white ' >  Verify <FaLock className='ml-2' />  </button> }  </td>
+                <td>  <button onClick={()=> handleUserVerify(user._id)} className='btn btn-primary btn-sm text-white ' > {user?.verify !== "verified"?
+                 <span className='flex'>  Verify <FaLock className='ml-2'  />  </span> 
+                 :
+                 <span className='flex'> 
+                 Verified <FaLockOpen className='ml-2' />
+                 </span>
+              }   </button>   </td>
                 
                 <td> { user.role !== 'admin' && <button onClick={()=> handleMakeAdmin(user._id)} className='btn btn-primary btn-sm text-white ' >  Make Admin <FaUserTie className='ml-2' />  </button> }  </td>
 

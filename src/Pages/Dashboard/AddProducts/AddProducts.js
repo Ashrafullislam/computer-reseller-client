@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
-import Toast, { toast }  from 'react-hot-toast'
+import  { toast }  from 'react-hot-toast'
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import useVerify from '../../../Hook/useVerify/useVerify';
 const AddProducts = () => {
     const {user} = useContext(AuthContext)
-    console.log(user)
+    const email = user?.email;
+    const [isVerify] = useVerify(user?.email);
+    const verify = isVerify?.verify;
+    // console.log(verify)
     const d = new Date();
     let date = d.toLocaleDateString();
-   
+    
 
     const handleAddProduct =event=> {
         event.preventDefault();
@@ -36,7 +40,10 @@ const AddProducts = () => {
           yearsOfUse,
           conditionType,
           postedTime:date,
-          status:"available"
+          status:"available",
+          email,
+          verify,
+          
          }
 
          fetch('https://computer-reseller-server.vercel.app/products', {

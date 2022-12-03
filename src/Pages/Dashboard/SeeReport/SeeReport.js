@@ -73,7 +73,7 @@ console.log(reports)
                 <td> {report.email} </td>
                 <td> {report.comment} </td>
               
-                <td className='flex'> <button onClick={()=> deleteReport(report._id)} className='btn bg-blue-500 btn-sm text-white ' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
+                <td className=''> <button onClick={()=> deleteReport(report._id)} className='btn bg-blue-500 btn-sm text-white ' > Delete <FaTrashAlt className='ml-2'/> </button> </td>
             </tr> )
             :
             ''

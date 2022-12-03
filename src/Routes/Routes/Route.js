@@ -10,6 +10,7 @@ import MyOrders from '../../Pages/Dashboard/MyOrders/MyOrders';
 import MyProducts from '../../Pages/Dashboard/MyProducts/MyProducts';
 import SeeReport from '../../Pages/Dashboard/SeeReport/SeeReport';
 import Home from '../../Pages/Home/Home/Home';
+import ProductsDetails from '../../Pages/ProductsDetails/ProductsDetails';
 import Login from '../../Pages/Register/Login/Login';
 import SignUp from '../../Pages/Register/SignUp/SignUp';
 import AdminRoute from '../AdminRoute/AdminRoute';
@@ -42,6 +43,11 @@ import SellerRoute from '../SellerRoute/SellerRoute';
                     return fetch(`https://computer-reseller-server.vercel.app/categoryProducts/${params.id}`)
                 } ,
                 element: <PrivetRoute > <CategoryProducts > </CategoryProducts>  </PrivetRoute>  
+            },
+            {
+                path: '/productsDetails/:id', 
+                loader: ({params})=> fetch(`http://localhost:5000/productsDetails/${params.id}`),
+                element: <ProductsDetails > </ProductsDetails>
             },
           
             {

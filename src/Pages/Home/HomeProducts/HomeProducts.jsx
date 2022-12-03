@@ -14,7 +14,9 @@ const HomeProducts = () => {
         .then(category => setCategories(category))
     },[])
 
-  
+  if(loading){
+    return <Loading > </Loading>
+  }
     return (
         <div data-aos="">
             <h2 className='my-10 shadow-lg w-1/2 rounded-tl-2xl rounded-br-2xl mx-auto bg-primary py-3  text-center text-3xl text-white font-bold'data-aos="flip-right"> Our Products Category  </h2>
